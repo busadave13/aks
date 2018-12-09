@@ -4,11 +4,11 @@ EXPOSE 8411
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY ["AKSBackEnd/AKSBackEnd.csproj", "AKSBackEnd/"]
+COPY ["AKSBackEnd.csproj", "AKSBackEnd/"]
 
-RUN dotnet restore "$PROJECT_DIR/AKSBackEnd.csproj"
-COPY . .
+RUN dotnet restore "AKSBackEnd/AKSBackEnd.csproj"
 WORKDIR "/src/AKSBackEnd"
+COPY . .
 RUN dotnet build "AKSBackEnd.csproj" -c Release -o /app
 
 FROM build AS publish

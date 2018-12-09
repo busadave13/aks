@@ -6,8 +6,8 @@ FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY ["AKSFrontEnd.csproj", "AKSFrontEnd/"]
 
-RUN dotnet restore "ASKFrontEnd/AKSFrontEnd.csproj"
-WORKDIR "/src/AKSFrontEnd"
+RUN dotnet restore "AKSFrontEnd/AKSFrontEnd.csproj"
+WORKDIR "src/AKSFrontEnd"
 COPY . .
 RUN dotnet build "AKSFrontEnd.csproj" -c Release -o /app
 
