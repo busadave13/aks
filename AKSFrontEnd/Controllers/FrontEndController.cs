@@ -8,7 +8,7 @@ namespace AKSFrontEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class FrontEndController : ControllerBase
     {
         // GET api/values/5
         [HttpGet("node")]

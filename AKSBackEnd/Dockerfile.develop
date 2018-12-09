@@ -2,14 +2,14 @@ FROM microsoft/dotnet:2.1-sdk
 ARG BUILD_CONFIGURATION=Debug
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV DOTNET_USE_POLLING_FILE_WATCHER=true
-EXPOSE 8455
+EXPOSE 80
 
 WORKDIR /src
-COPY ["AKSFrontEnd.csproj", "AKSFrontEnd/"]
+COPY ["AKSBackEnd/AKSBackEnd.csproj", "AKSBackEnd/"]
 
-RUN dotnet restore "AKSFrontEnd/AKSFrontEnd.csproj"
-WORKDIR "/src/AKSFrontEnd"
+RUN dotnet restore "AKSBackEnd/AKSBackEnd.csproj"
 COPY . .
-RUN dotnet build --no-restore "AKSFrontEnd.csproj" -c $BUILD_CONFIGURATION
+WORKDIR "/src/AKSBackEnd"
+RUN dotnet build --no-restore "AKSBackEnd.csproj" -c $BUILD_CONFIGURATION
 
 ENTRYPOINT ["dotnet", "run", "--no-build", "--no-launch-profile", "-c", "$BUILD_CONFIGURATION", "--"]

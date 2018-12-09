@@ -1,14 +1,14 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8455
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY ["AKSFrontEnd/AKSFrontEnd.csproj", "AKSFrontEnd/"]
+COPY ["AKSFrontEnd.csproj", "AKSFrontEnd/"]
 
-RUN dotnet restore "$PROJECT_DIR/AKSFrontEnd.csproj"
-COPY . .
+RUN dotnet restore "ASKFrontEnd/AKSFrontEnd.csproj"
 WORKDIR "/src/AKSFrontEnd"
+COPY . .
 RUN dotnet build "AKSFrontEnd.csproj" -c Release -o /app
 
 FROM build AS publish
